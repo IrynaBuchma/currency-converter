@@ -3,9 +3,14 @@ import Navigation from './Navigation/Navigation';
 import { Home } from 'pages/Home';
 import { Rates } from 'pages/Rates';
 import { useEffect } from 'react';
-import { getUserInfo } from 'service/api';
+// ssadas
+
+import { useDispatch } from 'react-redux';
+import { fetchBaseCurrency } from 'redux/operations';
 
 export const App = () => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const options = {
       enableHighAccuracy: true,
@@ -16,12 +21,7 @@ export const App = () => {
     function success(pos) {
       const crd = pos.coords;
 
-      getUserInfo(crd);
-
-      console.log('Your current position is:');
-      console.log(`Latitude : ${crd.latitude}`);
-      console.log(`Longitude: ${crd.longitude}`);
-      console.log(`More or less ${crd.accuracy} meters.`);
+      dispatch(fetchBaseCurrency(crd));
     }
 
     function error(err) {
@@ -29,7 +29,7 @@ export const App = () => {
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <Routes>
