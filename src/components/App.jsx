@@ -3,6 +3,7 @@ import Navigation from './Navigation/Navigation';
 import { Home } from 'pages/Home';
 import { Rates } from 'pages/Rates';
 import { useEffect } from 'react';
+// ssadas
 
 import { useDispatch } from 'react-redux';
 import { fetchBaseCurrency } from 'redux/operations';
